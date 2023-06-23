@@ -39,4 +39,9 @@ jobs:
           ls ../
           mkdir -p `cat ../code/version.txt`
           mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
-          
+          cp -R ../code/1.0.5/AB/CD/* 1.0.5/AB/a.txt update-site/${GITHUB_REF##*/}/
+          git add .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -m "Add latest update-site for branch ${GITHUB_REF##*/}"
+          git push origin test --force
