@@ -7,10 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v3
-      #   with:
-      #     path: code
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: code
       - name: Checkout pages
         uses: actions/checkout@v3
         with:
@@ -28,7 +28,7 @@ jobs:
       #     echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --batch --import
       #   env:
       #     GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-      # - name: Build with Maven
+      # - name: make dir
       #   working-directory: code
       #   run: mvn --no-transfer-progress --batch-mode -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} clean verify --file pom.xml
       - name: deploy
@@ -36,6 +36,6 @@ jobs:
         run: |
           mkdir -p update-site/${GITHUB_REF##*/}/
           ls ../
-          mkdir -p `cat ../main/version.txt`
-          mv update-site/${GITHUB_REF##*/}/* `cat ../main/version.txt`
+          mkdir -p `cat ../code/version.txt`
+          mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
           
