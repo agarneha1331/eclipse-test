@@ -36,10 +36,10 @@ jobs:
         run: |
           mkdir -p update-site/${GITHUB_REF##*/}/
           mv a.txt update-site/${GITHUB_REF##*/}/
-          ls ../
+          ls ../code
           mkdir -p `cat ../code/version.txt`
           mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
-          cp -R ../code/1.0.5/AB/CD/* 1.0.5/AB/a.txt update-site/${GITHUB_REF##*/}/
+          cp -R ../code/1.0.5/AB/CD/* ../code/1.0.5/AB/a.txt update-site/${GITHUB_REF##*/}/
           git add .
           git config user.name github-actions
           git config user.email github-actions@github.com
