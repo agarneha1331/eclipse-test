@@ -34,6 +34,5 @@ jobs:
       - name: deploy
         working-directory: test
         run: |
-          mkdir -p update-site/${GITHUB_REF##*/}/
           mkdir -p `cat version.txt`
           
