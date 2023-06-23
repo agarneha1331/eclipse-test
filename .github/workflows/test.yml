@@ -34,6 +34,7 @@ jobs:
       - name: deploy
         working-directory: test
         run: |
-          ls
-          mkdir -p `cat version.txt`
+          mkdir -p update-site/${GITHUB_REF##*/}/
+          mkdir -p `cat ../main/version.txt`
+          mv update-site/${GITHUB_REF##*/}/* `cat ../main/version.txt`
           
