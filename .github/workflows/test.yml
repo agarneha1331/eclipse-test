@@ -19,9 +19,10 @@ jobs:
       - name: deploy
         working-directory: gh-pages
         run: |
-          mkdir `cat ../code/version.txt`
+          BACKUP_FILE=`cat ../code/version.txt`
+          mkdir ../$BACKUP_FILE
           echo `1`
-          git mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
+          git mv update-site/${GITHUB_REF##*/}/* ../$BACKUP_FILE
           echo `2`
           cp -R ../code/target/repository/* ../code/target/*.zip update-site/${GITHUB_REF##*/}/
           echo `3`
