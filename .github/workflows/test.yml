@@ -14,29 +14,16 @@ jobs:
       - name: Checkout pages
         uses: actions/checkout@v3
         with:
-          path: test
-          ref: test
-      # - name: Set up JDK
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     java-version: '17'
-      #     distribution: 'adopt'
-      #     architecture: 'x64'
-      #     cache: maven
-      # - name: Configure GPG Key
-      #   run: |
-      #     echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --batch --import
-      #   env:
-      #     GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-      # - name: make dir
-      #   working-directory: code
-      #   run: mvn --no-transfer-progress --batch-mode -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} clean verify --file pom.xml
+          path: gh-pages
+          ref: gh-pages
       - name: deploy
         working-directory: test
         run: |
-          mkdir -p update-site/${GITHUB_REF##*/}/
-          ls ../code
-          mkdir -p `cat ../code/version.txt`
-          mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt` 2>/dev/null
-          cp -R ../code/1.0.5/AB/CD/* ../code/1.0.5/AB/a.txt update-site/${GITHUB_REF##*/}/
-          
+          mkdir `cat ../code/version.txt`
+          mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
+          cp -R ../code/target/repository/* ../code/target/*.zip update-site/${GITHUB_REF##*/}/
+          git add .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -m "Add latest update-site for branch ${GITHUB_REF##*/}"
+          git push origin gh-pages --force
