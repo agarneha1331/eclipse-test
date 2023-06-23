@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="com.browserstack.eclipse.feature" version="0.0.0">
+      <category name="com.browserstack.eclipse"/>
+   </feature>
+   <category-def name="com.browserstack.eclipse" label="BrowserStack"/>
+</site>
