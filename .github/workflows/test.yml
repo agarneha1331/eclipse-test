@@ -34,5 +34,6 @@ jobs:
       - name: deploy
         working-directory: test
         run: |
+          ls
           mkdir -p `cat version.txt`
           
