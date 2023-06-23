@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir `cat ../code/version.txt`
           echo `1`
-          mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
+          git mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
           echo `2`
           cp -R ../code/target/repository/* ../code/target/*.zip update-site/${GITHUB_REF##*/}/
           echo `3`
