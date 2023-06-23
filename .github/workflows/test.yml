@@ -35,6 +35,7 @@ jobs:
         working-directory: test
         run: |
           mkdir -p update-site/${GITHUB_REF##*/}/
+          mv a.txt update-site/${GITHUB_REF##*/}/
           ls ../
           mkdir -p `cat ../code/version.txt`
           mv update-site/${GITHUB_REF##*/}/* `cat ../code/version.txt`
